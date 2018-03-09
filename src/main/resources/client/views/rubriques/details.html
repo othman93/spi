@@ -1,0 +1,52 @@
+<!-- @Author Zouhair
+ -- Author Kenza ABOUAKIL
+ -- Détails d'une rubrique
+ -->
+ <!-- Navigation-Details -->
+<ul class="page-breadcrumb breadcrumb" ng-hide="edit">
+	<li><a href="#/">Accueil</a> <i class="fa fa-circle"></i> </i>
+		<li><a href="#">Administration</a> <i class="fa fa-circle"></i></li>
+	<li><span class="active">D&eacute;tails d'une rubrique standard</span></li>
+</ul>
+<!-- END Navigation -->
+<!-- Navigation Mise à jour -->
+<ul class="page-breadcrumb breadcrumb" ng-show="edit">
+	<li><a href="#/">Accueil</a> <i class="fa fa-circle"></i> </i>
+		<li><a href="#">Administration</a> <i class="fa fa-circle"></i></li>
+	<li><span class="active">Mise &agrave; jour d'une rubrique standard</span></li>
+</ul>
+<!-- END Navigation -->
+<div class="page" ng-controller="RubriqueDetailsController">
+	<div class="portlet light bordered">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="icon-social-dribble font-red"></i> <span
+					class="cpation-subject font-red bold">Details d'une rubrique standard</span>
+			</div>
+		</div>
+		<!--------------------------- Consultation --------------------------->
+		<div class="portlet-body form" ng-hide="edit">
+			<form class="form-horizontal form-bordered">
+				<div class="form-group">
+					<div class="col-md-3">
+						<strong>Ordre</strong>
+					</div>
+					<div class="col-md-3">{{rubrique.ordre}}</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-3">
+						<strong>Designation</strong>
+					</div>
+					<div class="col-md-3">{{rubrique.designation}}</div>
+				</div>
+				<br>
+				<!------------------------Boutons Retour et Editer----------->
+				<a class="btn btn-warning" href="#/rubriques"><span
+					class="glyphicon glyphicon-arrow-left"></span> Retour</a>
+				<button class="btn btn-primary pull-right" ng-click="editer(idrub)">
+					<span class="glyphicon glyphicon-pencil"></span> Editer
+				</button>
+			</form>
+		</div>
+	</div>
+</div>

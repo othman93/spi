@@ -1,0 +1,121 @@
+<!-- @Author Zouhair Je -->
+<div class="page-sidebar md-shadow-z-2-i  navbar-collapse collapse">
+	<!-- BEGIN SIDEBAR MENU -->
+	<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+	<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+	<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+	<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+	<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+	<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+	<ul class="page-sidebar-menu" 
+		data-ng-controller="NavCtrl"
+		data-keep-expanded="false" 
+		data-auto-scroll="true" 
+		data-slide-speed="200" 
+		ng-class="{'page-sidebar-menu-closed': settings.layout.pageSidebarClosed}"
+		data-highlight-active>
+		<li class="heading">
+			<h3>TABLEAU DE BORD</h3>
+		</li>
+		<li class="start">
+			<a href="#/dashboard.html">
+			<i class="icon-home"></i>
+			<span class="title">Accueil</span>
+			</a>
+		</li>
+		<li ng-show="user=='ADM'">
+			<a href="javascript:;">
+			<i class="icon-settings"></i>
+			<span class="title">Administration</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li>
+					<a href="#/enseignants">
+					<i class="icon-user"></i> Enseignants</span>
+					</a>
+				</li>
+				<li>
+					<a href="#/promotions">
+					<i class="icon-graduation"></i> Promotions</span>
+					</a>
+				</li>
+				<!-- <li>
+					<a href="#/formations">
+					<i class="icon-bag"></i> Formations</span>
+					</a>
+				</li> -->
+				<li>
+					<a href="#/etudiants">
+					<i class="icon-users"></i> Etudiants</span>
+					</a>
+				</li>
+				<li>
+					<a href="#/qualificatifs">
+					<i class="icon-list"></i> Qualificatifs</span>
+					</a>
+				</li>
+				<li>
+					<a href="#/questions">
+					<i class="icon-question"></i> Questions standards</span>
+					</a>
+				</li>
+				<li>
+					<a href="#/rubriques">
+					<i class="icon-tag"></i> Rubriques standards</span>
+					</a>
+				</li>
+				<li>
+					<a href="#/ue">
+					<i class="icon-grid"></i> Unités d'enseignements</span>
+					</a>
+				</li>
+				<li>
+					<a href="#/formations">
+					<i class="icon-book-open"></i> Formations</span>
+					</a>
+				</li>
+				<li>
+					<a href="#/ec">
+					<i class="icon-puzzle"></i> Elements constitutifs</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li ng-show="user=='ENS'">
+			<a href="javascript:;">
+			<i class="icon-layers"></i>
+			<span class="title">Gestion &egrave;valuations</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li>
+					<a href="#/evaluations">
+					<i class="icon-notebook"></i> Evaluations</span>
+					</a>
+				</li>
+				<li>
+					<a href="#/creationEvaluation">
+					<i class="icon-note"></i> Cr&egrave;er Evaluation</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		
+		<li ng-show="user=='ETU'">
+			<a href="javascript:;">
+			<i class="icon-layers"></i>
+			<span class="title">&Eacute;valuations</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li>
+					<a href="#/etudiantEvaluations">
+					<i class="icon-notebook"></i> Consulter les &eacute;valuations</span>
+					</a>
+				</li>
+			</ul>
+		</li>	
+	</ul>
+	<!-- END SIDEBAR MENU -->
+</div>	

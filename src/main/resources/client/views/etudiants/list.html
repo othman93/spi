@@ -1,0 +1,140 @@
+<!-- @Author ZOuhair -->
+<!-- -----------------------------------------------Navigation-------------------------------------- -->
+<ul class="page-breadcrumb breadcrumb">
+	<li><a href="#/">Accueil</a> <i class="fa fa-circle"></i> </i>
+	<li><a href="#">Administration</a> <i class="fa fa-circle"></i></li>
+	<li><span class="active">Etudiants</span></li>
+</ul>
+<!-- -------------------------------------------END Navigation---------------------------------------- -->
+<div class="page page-table" data-ng-controller="EtudiantsController">
+	<!-- ---------------------------------------Note pour la gestion-------------------------------------- -->
+<!-- 	<div class="container" style="width: 100%;"> -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="portlet green-sharp box">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-info"></i>Gestion des &eacute;tudiants
+					</div>
+					<div class="tools"><a class="remove" data-original-title title></a></div>
+					<div class="tools"><a class="collapse" data-original-title title></a></div>
+				</div>
+				<div class="portlet-body collapse" style="display: block;">
+					<p>Cette page permet de consulter et lister l'ensemble des &eacute;tudiants du d&eacute;partement informatique de l'UBO.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 	</div> -->
+	<!-- -----------------------------------END--Note pour la gestion-------------------------------------- -->
+	<div class="portlet light bordered">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="icon-social-dribble font-red"></i> <span
+					class="cpation-subject font-red bold uppercase">Etudiants</span>
+			</div>
+			<!-- -----------------------------Recherche--------------------------------------- -->
+			<div>
+			<!-- ------------------------Bouton ajouter--------------------------------------- -->
+				<button class="btn blue" ng-click="ajoutEtudiant()">
+					Nouveau etudiant<i class="fa fa-plus"></i>
+				</button>
+				<div class="row">
+					<span style="float: right;" class="col-sm-4 col-xs-6">
+							<input type="text" placeholder="Rechercher" class="form-control"
+								data-ng-model="searchKeywords" data-ng-keyup="search()">
+					</span>
+				</div>
+			</div>
+			<!----------------------------------------La table de liste ---------------------------------------->
+			<div class="portlet-body">
+				<table class="table-scrollable">
+					<table class="table table-bordered table-striped table-hover">
+						<thead>
+							<tr>
+								<th><div class="th">
+										Nom <span class="glyphicon glyphicon-chevron-up"
+											data-ng-click=" order('nom') "
+											data-ng-class="{active: row == 'nom'}"></span> <span
+											class="glyphicon glyphicon-chevron-down"
+											data-ng-click=" order('-nom') "
+											data-ng-class="{active: row == '-nom'}"></span>
+									</div></th>
+								<th><div class="th">
+										Prénom <span class="glyphicon glyphicon-chevron-up"
+											data-ng-click=" order('prenom') "
+											data-ng-class="{active: row == 'prenom'}"></span> <span
+											class="glyphicon glyphicon-chevron-down"
+											data-ng-click=" order('-prenom') "
+											data-ng-class="{active: row == '-prenom'}"></span>
+									</div></th>
+								<th><div class="th">
+										Formation <span class="glyphicon glyphicon-chevron-up"
+											data-ng-click=" order('formation') "
+											data-ng-class="{active: row == 'formation'}"></span> <span
+											class="glyphicon glyphicon-chevron-down"
+											data-ng-click=" order('-formation') "
+											data-ng-class="{active: row == '-formation'}"></span>
+									</div></th>
+								<th><div class="th">
+										Promotion <span class="glyphicon glyphicon-chevron-up"
+											data-ng-click=" order('promotion') "
+											data-ng-class="{active: row == 'promotion'}"></span> <span
+											class="glyphicon glyphicon-chevron-down"
+											data-ng-click=" order('-promotion') "
+											data-ng-class="{active: row == '-promotion'}"></span>
+									</div></th>
+								<th><div class="th">
+										E-mail <span class="glyphicon glyphicon-chevron-up"
+											data-ng-click=" order('email') "
+											data-ng-class="{active: row == 'email'}"></span> <span
+											class="glyphicon glyphicon-chevron-down"
+											data-ng-click=" order('-email') "
+											data-ng-class="{active: row == '-email'}"></span>
+									</div></th>
+									<th class="searchResult" colspan="3"><i>Affiche : {{currentPageEtudiant.length}} / {{etudiants.length}}</i></th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- currentPageEnseignant / enseignants -->
+							<tr data-ng-repeat="e in currentPageEtudiant" class="etudiant">
+								<td>{{e.nom}}</td>
+								<td>{{e.prenom}}</td>
+								<td>{{e.promotion.promotionPK.codeFormation}}</td>
+								<td>{{e.promotion.promotionPK.anneeUniversitaire}}</td>
+								<td>{{e.emailUbo}}</td>
+								<td id="iconGestion" ng-click="show(e.noEtudiant)">
+									<a href="#" data-toggle="tooltip" data-placement="top" title="Afficher les d&eacute;tails">
+									<span class="fa fa-eye"></span></a></td>
+								<td id="iconGestion" ng-click="edit(e.noEtudiant)">
+			                    	<a href="#" data-toggle="tooltip" data-placement="top" title="Editer">
+			                    	<span class="glyphicon glyphicon-edit"></span></a></td>
+								<td id="iconGestion" ng-click="supprime(e.noEtudiant)">
+			                    	<a href="#" data-toggle="tooltip" data-placement="top" title="Supprimer">
+			                    	<span class="glyphicon glyphicon-trash"></span></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</table>
+				<!-- -------------------------------Footer ----------------------- -->
+				<footer class="table-footer">
+					<div class="row">
+						<div class="col-md-6 page-num-info">
+							<span> Afficher <select data-ng-model="numPerPage"
+								data-ng-options="num for num in numPerPageOpt"
+								data-ng-change="onNumPerPageChange()">
+							</select> entr&eacute;es par page
+							</span>
+						</div>
+						<div class="col-md-6 text-right pagination-container">
+							<pagination class="pagination-sm" ng-model="currentPage"
+								total-items="filteredEtudiant.length" max-size="4"
+								ng-change="select(currentPage)" items-per-page="numPerPage"
+								rotate="false" boundary-links="true"></pagination>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+</div>
